@@ -6,138 +6,133 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <style>
     :root {
-      --bg: #050505;          /* Deep Space Black */
-      --bg-card: #121212;     /* Dark Charcoal */
-      --text-main: #f9f9f9;   /* Pure White Text */
-      --text-dim: #a1a1aa;    /* Dimmed Silver */
-      --neon-pink: #ff2a5f;
-      --neon-blue: #00fff5;
-      --neon-purple: #bd00ff;
-      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --bg: #FAFAFA;
+      --text: #050505;
+      --border: #111111;
+      --muted: #666666;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #050505;
+        --text: #F5F5F5;
+        --border: #EEEEEE;
+        --muted: #A0A0A0;
+      }
     }
     
-    * { box-sizing: border-box; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body { 
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
-      line-height: 1.75; 
-      color: var(--text-main); 
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+      line-height: 1.6; 
+      color: var(--text); 
       background: var(--bg); 
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Subtle ambient background glow */
-    body::before {
-      content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: radial-gradient(circle at 50% 50%, rgba(189, 0, 255, 0.04), transparent 60%),
-                  radial-gradient(circle at 80% 20%, rgba(0, 255, 245, 0.04), transparent 50%);
-      z-index: -1; pointer-events: none;
-    }
-
-    main { max-width: 800px; margin: 0 auto; padding: 5rem 1.5rem; }
-    header { margin-bottom: 5rem; text-align: center; }
+    main { max-width: 800px; margin: 0 auto; padding: 6rem 2rem; }
     
-    /* Crazy Animated Gradient Title */
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
+    /* Header - Architectural and Massive */
+    header { margin-bottom: 4rem; }
+    
     h1.site-title { 
-      font-size: clamp(3rem, 8vw, 5.5rem); 
+      font-size: clamp(3rem, 10vw, 6.5rem); 
       font-weight: 900; 
-      margin-bottom: 1.5rem; 
-      letter-spacing: -0.04em; 
-      text-transform: uppercase;
-      line-height: 1.1;
+      letter-spacing: -0.05em; 
+      text-transform: uppercase; 
+      line-height: 0.9;
+      border-bottom: 8px solid var(--text);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
     }
-    h1.site-title a { 
-      text-decoration: none; 
-      background: linear-gradient(270deg, var(--neon-pink), var(--neon-purple), var(--neon-blue), var(--neon-pink));
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientFlow 6s ease infinite;
-    }
+    h1.site-title a { color: var(--text); text-decoration: none; }
     
-    /* Edgy Navigation */
-    nav { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+    /* Navigation - Serious and crisp */
+    nav { 
+      display: flex; gap: 2rem; 
+      font-weight: 700; 
+      text-transform: uppercase; 
+      letter-spacing: 1px; 
+      font-size: 0.85rem; 
+    }
     nav a { 
-      font-size: 1.05rem; font-weight: 800; color: var(--text-dim); text-decoration: none; 
-      text-transform: uppercase; letter-spacing: 2px; position: relative; padding: 0.5rem 0;
-      transition: color 0.3s var(--ease);
+      color: var(--text); 
+      text-decoration: none; 
+      opacity: 0.5; 
+      transition: opacity 0.2s ease, transform 0.2s ease; 
     }
-    nav a::after { 
-      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; 
-      background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue);
-      transition: width 0.3s var(--ease); 
-    }
-    nav a:hover { color: var(--text-main); }
-    nav a:hover::after { width: 100%; }
+    nav a:hover { opacity: 1; transform: translateX(2px); }
     
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes floatCard {
-      0%, 100% { transform: translateY(-8px) scale(1.02); }
-      50% { transform: translateY(-16px) scale(1.02); }
-    }
-    .fade-in-up { opacity: 0; animation: fadeInUp 0.8s var(--ease) forwards; }
-    
-    /* Hover-Glowing Essay Cards */
-    .post-list { list-style: none; padding: 0; }
+    /* Post List - Sharp, no boxes, just strong dividing lines */
+    .post-list { list-style: none; padding: 0; margin-top: 4rem; }
     .post-list > li { 
-      margin-bottom: 3rem; background: var(--bg-card); border-radius: 1rem; 
-      padding: 3rem 2.5rem; border: 1px solid rgba(255, 255, 255, 0.05);
-      position: relative; opacity: 0; animation: fadeInUp 0.6s var(--ease) forwards;
-      transition: all 0.4s var(--ease); z-index: 1;
+      border-top: 2px solid var(--border);
+      padding: 3rem 0;
+      opacity: 0; 
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
-    /* Magic Glowing Border Trick on Hover */
-    .post-list > li::before {
-      content: ""; position: absolute; inset: 0; border-radius: 1rem; padding: 2px; 
-      background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      opacity: 0; transition: opacity 0.4s ease; z-index: -1;
+    /* Snappy hover effect - no floating, just a sharp indent */
+    .post-list > li:hover { padding-left: 1.5rem; }
+    
+    .post-title { 
+      font-size: clamp(2rem, 5vw, 3rem); 
+      font-weight: 800; 
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem; 
     }
-
-    .post-list > li:nth-child(1) { animation-delay: 0.1s; }
-    .post-list > li:nth-child(2) { animation-delay: 0.2s; }
+    .post-title a { color: var(--text); text-decoration: none; }
     
-    /* Fixed Hover State! */
-    .post-list > li:hover { 
-      opacity: 1; /* Stops it from disappearing */
-      transform: translateY(-8px) scale(1.02); 
-      animation: floatCard 4s ease-in-out infinite; 
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 245, 0.15); 
-      background: #181818;
+    .post-meta { 
+      font-family: "Courier New", Courier, monospace; 
+      text-transform: uppercase; 
+      font-size: 0.85rem; 
+      color: var(--muted); 
+      margin-bottom: 1.5rem;
+      font-weight: 600;
     }
-    .post-list > li:hover::before { opacity: 1; }
     
-    .post-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
-    .post-title a { color: var(--text-main); text-decoration: none; transition: color 0.3s; }
-    .post-list > li:hover .post-title a { color: var(--neon-blue); text-shadow: 0 0 15px rgba(0, 255, 245, 0.4); }
-    
-    .post-meta { color: var(--neon-pink); font-size: 0.9rem; font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1.5px; }
-    .post-excerpt { color: var(--text-dim); font-size: 1.15rem; line-height: 1.8; }
+    .post-excerpt { 
+      font-size: 1.25rem; 
+      max-width: 650px; 
+      color: var(--text); 
+      opacity: 0.85; 
+    }
     
     /* Essay Reading Experience */
-    h1, h2, h3 { font-weight: 900; color: var(--text-main); letter-spacing: -0.02em; }
-    h2 { font-size: 2.2rem; margin: 4rem 0 2rem; padding-bottom: 1rem; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; }
-    h2::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 60px; height: 2px; background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); }
-    p { margin-bottom: 1.75rem; font-size: 1.15rem; }
-    a { color: var(--neon-blue); text-decoration: none; font-weight: 600; transition: text-shadow 0.2s; }
-    a:hover { text-shadow: 0 0 10px var(--neon-blue); }
+    h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; margin: 0; }
+    h2 { 
+      font-size: 2.5rem; 
+      margin: 4rem 0 1.5rem; 
+      border-bottom: 2px solid var(--border); 
+      padding-bottom: 0.5rem; 
+    }
+    p { font-size: 1.2rem; margin-bottom: 2rem; color: var(--text); opacity: 0.9; }
+    a { color: var(--text); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; }
+    a:hover { background: var(--text); color: var(--bg); }
     
-    footer { text-align: center; padding: 5rem 0 3rem; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; margin-top: 5rem; text-transform: uppercase; letter-spacing: 2px; }
+    /* Snappy Reveal Animation */
+    .reveal { animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes slideUp { 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+    
+    footer { 
+      margin-top: 6rem; 
+      padding-top: 2rem; 
+      border-top: 8px solid var(--border); 
+      font-family: "Courier New", Courier, monospace; 
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
   </style>
 </head>
 <body>
   <main>
-    <header class="fade-in-up">
+    <header class="reveal">
       <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
       <nav>
         <a href="{{ '/' | relative_url }}">Essays</a>
@@ -146,27 +141,28 @@
       </nav>
     </header>
 
-    <div class="fade-in-up" style="animation-delay: 0.2s;">
+    <div class="reveal" style="animation-delay: 0.1s;">
       {{ content }}
     </div>
 
-    <footer class="fade-in-up" style="animation-delay: 0.4s;">
-      &copy; {{ 'now' | date: '%Y' }} Kartik Neti. Dare to build.
+    <footer class="reveal" style="animation-delay: 0.2s;">
+      &copy; {{ 'now' | date: '%Y' }} Kartik Neti. All rights reserved.
     </footer>
   </main>
 
   <script>
+    // Sharp, professional scroll reveals
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-up');
-          entry.target.style.animationDelay = '0s'; 
+          entry.target.classList.add('reveal');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
 
-    document.querySelectorAll('h2, p, .post-list > li').forEach(el => {
+    document.querySelectorAll('.post-list > li, h2, p').forEach((el, i) => {
+      el.style.animationDelay = `${i * 0.05}s`; // Staggered fast reveals
       observer.observe(el);
     });
   </script>
