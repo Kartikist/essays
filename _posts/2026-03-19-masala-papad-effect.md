@@ -1,4 +1,4 @@
-Title: The Masala Papad Effect: Why Enterprise Products Feel So Poor Despite All the Money
+Why Enterprise Products Feel So Poor Despite All the Money
 
 I grew up in a house where money was heavy.
 
