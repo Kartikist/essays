@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "The Masala Papad Effect: Why Enterprise Products Feel So Poor Despite All the Money"
+title: "The Masala Papad Effect"
 description: "How scarcity mindset quietly shapes the products we build."
 date: 2026-03-19
 tags: [product, ux, behavior, scarcity]
 ---
+*Why enterprise products feel so poor despite all the money.*
 
 I grew up in a house where money was heavy.
 
