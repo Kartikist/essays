@@ -76,7 +76,7 @@ When I look at software I admire, it always has this feeling:
 “The team that built this was not panicking. They weren’t counting every pixel like a rupee. They trusted they could afford to be kind.”
 
 <iframe 
-  src="/assets/masala-papad-demo.html"
+  src="/demos/masala-papad-demo.html"
   width="100%"
   height="900"
   style="border:none; border-radius:12px; margin: 32px 0;">
