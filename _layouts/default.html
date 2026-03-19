@@ -6,71 +6,133 @@
   <title>{{ page.title }} | {{ site.title }}</title>
   <style>
     :root {
-      --bg: #ffffff; 
-      --bg-card: #fafbfc; 
-      --text-main: #0f1419;
-      --text-dim: #64748b; 
-      --accent: #1e293b; 
-      --border: #e2e8f0;
-      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      --bg: #050505;          /* Deep Space Black */
+      --bg-card: #121212;     /* Dark Charcoal */
+      --text-main: #f9f9f9;   /* Pure White Text */
+      --text-dim: #a1a1aa;    /* Dimmed Silver */
+      --neon-pink: #ff2a5f;
+      --neon-blue: #00fff5;
+      --neon-purple: #bd00ff;
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0a0e15; 
-        --bg-card: #111827; 
-        --text-main: #f8fafc;
-        --text-dim: #9ca3af; 
-        --accent: #e5e7eb; 
-        --border: #374151;
-      }
-    }
-    * { box-sizing: border-box; margin: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.75; color: var(--text-main); background: var(--bg); }
-    main { max-width: 768px; margin: 0 auto; padding: 3rem 1.5rem; }
-    header { margin-bottom: 4rem; text-align: center; transition: transform 0.1s; }
-    h1.site-title { font-size: clamp(2.25rem, 6vw, 4rem); font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
-    .site-title a { color: var(--text-main); text-decoration: none; }
     
-    /* Navigation */
-    nav { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-    nav a { font-weight: 600; color: var(--text-dim); text-decoration: none; padding: 0.5rem; position: relative; }
-    nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--text-main); transition: width 0.3s var(--ease); }
+    * { box-sizing: border-box; margin: 0; }
+    body { 
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      line-height: 1.75; 
+      color: var(--text-main); 
+      background: var(--bg); 
+      overflow-x: hidden;
+    }
+
+    /* Subtle ambient background glow */
+    body::before {
+      content: ''; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(189, 0, 255, 0.04), transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(0, 255, 245, 0.04), transparent 50%);
+      z-index: -1; pointer-events: none;
+    }
+
+    main { max-width: 800px; margin: 0 auto; padding: 5rem 1.5rem; }
+    header { margin-bottom: 5rem; text-align: center; }
+    
+    /* Crazy Animated Gradient Title */
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1.site-title { 
+      font-size: clamp(3rem, 8vw, 5.5rem); 
+      font-weight: 900; 
+      margin-bottom: 1.5rem; 
+      letter-spacing: -0.04em; 
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    h1.site-title a { 
+      text-decoration: none; 
+      background: linear-gradient(270deg, var(--neon-pink), var(--neon-purple), var(--neon-blue), var(--neon-pink));
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientFlow 6s ease infinite;
+    }
+    
+    /* Edgy Navigation */
+    nav { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+    nav a { 
+      font-size: 1.05rem; font-weight: 800; color: var(--text-dim); text-decoration: none; 
+      text-transform: uppercase; letter-spacing: 2px; position: relative; padding: 0.5rem 0;
+      transition: color 0.3s var(--ease);
+    }
+    nav a::after { 
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; 
+      background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue);
+      transition: width 0.3s var(--ease); 
+    }
     nav a:hover { color: var(--text-main); }
     nav a:hover::after { width: 100%; }
     
     /* Animations */
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(-8px) scale(1.02); }
+      50% { transform: translateY(-16px) scale(1.02); }
     }
     .fade-in-up { opacity: 0; animation: fadeInUp 0.8s var(--ease) forwards; }
     
-    /* Lists and Cards */
+    /* Hover-Glowing Essay Cards */
     .post-list { list-style: none; padding: 0; }
     .post-list > li { 
-      margin-bottom: 2.5rem; background: var(--bg-card); border-radius: 0.75rem; 
-      padding: 2rem; box-shadow: var(--shadow); border: 1px solid var(--border);
-      opacity: 0; animation: fadeInUp 0.6s var(--ease) forwards;
-      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 3rem; background: var(--bg-card); border-radius: 1rem; 
+      padding: 3rem 2.5rem; border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative; opacity: 0; animation: fadeInUp 0.6s var(--ease) forwards;
+      transition: all 0.4s var(--ease); z-index: 1;
     }
+    
+    /* Magic Glowing Border Trick on Hover */
+    .post-list > li::before {
+      content: ""; position: absolute; inset: 0; border-radius: 1rem; padding: 2px; 
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity 0.4s ease; z-index: -1;
+    }
+
     .post-list > li:nth-child(1) { animation-delay: 0.1s; }
     .post-list > li:nth-child(2) { animation-delay: 0.2s; }
-    .post-list > li:hover { transform: translateY(-4px); animation: float 3s ease-in-out infinite; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     
-    .post-title { font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
-    .post-title a { color: var(--text-main); text-decoration: none; }
-    .post-meta { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1rem; }
+    /* Fixed Hover State! */
+    .post-list > li:hover { 
+      opacity: 1; /* Stops it from disappearing */
+      transform: translateY(-8px) scale(1.02); 
+      animation: floatCard 4s ease-in-out infinite; 
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 255, 245, 0.15); 
+      background: #181818;
+    }
+    .post-list > li:hover::before { opacity: 1; }
     
-    /* General Typography */
-    h1, h2, h3 { font-weight: 800; color: var(--text-main); }
-    h2 { font-size: 1.875rem; margin: 3rem 0 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-    a { color: #3b82f6; }
-    footer { text-align: center; padding: 4rem 0 2rem; color: var(--text-dim); border-top: 1px solid var(--border); font-size: 0.875rem; }
+    .post-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .post-title a { color: var(--text-main); text-decoration: none; transition: color 0.3s; }
+    .post-list > li:hover .post-title a { color: var(--neon-blue); text-shadow: 0 0 15px rgba(0, 255, 245, 0.4); }
+    
+    .post-meta { color: var(--neon-pink); font-size: 0.9rem; font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1.5px; }
+    .post-excerpt { color: var(--text-dim); font-size: 1.15rem; line-height: 1.8; }
+    
+    /* Essay Reading Experience */
+    h1, h2, h3 { font-weight: 900; color: var(--text-main); letter-spacing: -0.02em; }
+    h2 { font-size: 2.2rem; margin: 4rem 0 2rem; padding-bottom: 1rem; border-bottom: 2px solid rgba(255,255,255,0.1); position: relative; }
+    h2::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 60px; height: 2px; background: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); }
+    p { margin-bottom: 1.75rem; font-size: 1.15rem; }
+    a { color: var(--neon-blue); text-decoration: none; font-weight: 600; transition: text-shadow 0.2s; }
+    a:hover { text-shadow: 0 0 10px var(--neon-blue); }
+    
+    footer { text-align: center; padding: 5rem 0 3rem; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; margin-top: 5rem; text-transform: uppercase; letter-spacing: 2px; }
   </style>
 </head>
 <body>
@@ -78,8 +140,8 @@
     <header class="fade-in-up">
       <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
       <nav>
-        <a href="{{ '/' | relative_url }}">All Essays</a>
-        <a href="{{ '/tags/' | relative_url }}">By Tags</a>
+        <a href="{{ '/' | relative_url }}">Essays</a>
+        <a href="{{ '/tags/' | relative_url }}">Tags</a>
         <a href="{{ '/about/' | relative_url }}">About</a>
       </nav>
     </header>
@@ -89,30 +151,23 @@
     </div>
 
     <footer class="fade-in-up" style="animation-delay: 0.4s;">
-      &copy; {{ 'now' | date: '%Y' }} Kartik Neti. Built for bold ideas.
+      &copy; {{ 'now' | date: '%Y' }} Kartik Neti. Dare to build.
     </footer>
   </main>
 
   <script>
-    // Reveal text as you scroll down
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('fade-in-up');
-          entry.target.style.animationDelay = '0s'; // reset delay for scroll
+          entry.target.style.animationDelay = '0s'; 
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
 
     document.querySelectorAll('h2, p, .post-list > li').forEach(el => {
       observer.observe(el);
-    });
-
-    // Subtle parallax header on scroll
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const header = document.querySelector('header');
-      if (header) header.style.transform = `translateY(${scrolled * 0.2}px)`;
     });
   </script>
 </body>
