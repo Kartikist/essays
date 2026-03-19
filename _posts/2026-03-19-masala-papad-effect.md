@@ -75,6 +75,7 @@ It doesn’t throw features at the user to prove how big it is. It quietly absor
 When I look at software I admire, it always has this feeling:
 “The team that built this was not panicking. They weren’t counting every pixel like a rupee. They trusted they could afford to be kind.”
 
+Check how these real life example explain my point:
 {% include demos/masala-papad-demo.html %}
 
 
