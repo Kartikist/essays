@@ -1,0 +1,26 @@
+# Site settings
+title: Kartik's Essays
+description: Bold insights on product management, psychology, and more
+baseurl: ""  # Leave empty for repo-named site
+url: "https://kartikist.github.io"  # Change to your GitHub username
+
+# Theme & style (bold, modern)
+theme: minima
+minima:
+  skin: default  # Or 'dark' for bold dark mode
+  social_links:
+    github: yourusername  # Optional: your GitHub
+  show_excerpts: true  # Short previews
+
+# Plugins for search/tags
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Defaults for posts
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
