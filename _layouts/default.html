@@ -4,135 +4,158 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title }} | {{ site.title }}</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #FAFAFA;
-      --text: #050505;
-      --border: #111111;
-      --muted: #666666;
+      --bg-page: #F4F4F0;       /* The elegant off-white paper background */
+      --bg-card: #FFFFFF;       /* Pure white for the essay cards */
+      --text-main: #1A1A1A;     /* Deep charcoal/ink */
+      --text-muted: #666666;    /* Sophisticated gray */
+      --accent: #D94625;        /* Premium terracotta/burnt orange accent */
+      --border: rgba(0, 0, 0, 0.05);
+      --shadow-resting: 0 8px 24px rgba(0, 0, 0, 0.03);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.08);
+      --ease: cubic-bezier(0.25, 1, 0.5, 1);
     }
+
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #050505;
-        --text: #F5F5F5;
-        --border: #EEEEEE;
-        --muted: #A0A0A0;
+        --bg-page: #111111;
+        --bg-card: #1A1A1A;
+        --text-main: #F4F4F0;
+        --text-muted: #A0A0A0;
+        --border: rgba(255, 255, 255, 0.08);
       }
     }
-    
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body { 
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-      line-height: 1.6; 
-      color: var(--text); 
-      background: var(--bg); 
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg-page);
       -webkit-font-smoothing: antialiased;
     }
 
-    main { max-width: 800px; margin: 0 auto; padding: 6rem 2rem; }
-    
-    /* Header - Architectural and Massive */
-    header { margin-bottom: 4rem; }
-    
-    h1.site-title { 
-      font-size: clamp(3rem, 10vw, 6.5rem); 
-      font-weight: 900; 
-      letter-spacing: -0.05em; 
-      text-transform: uppercase; 
-      line-height: 0.9;
-      border-bottom: 8px solid var(--text);
-      padding-bottom: 1.5rem;
-      margin-bottom: 1.5rem;
+    main { max-width: 800px; margin: 0 auto; padding: 5rem 1.5rem; }
+
+    /* Elegant Serif for Titles to look Ambitious & Editorial */
+    h1, h2, h3, .site-title, .post-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--text-main);
     }
-    h1.site-title a { color: var(--text); text-decoration: none; }
+
+    /* Header */
+    header { margin-bottom: 5rem; text-align: center; }
     
-    /* Navigation - Serious and crisp */
-    nav { 
-      display: flex; gap: 2rem; 
-      font-weight: 700; 
-      text-transform: uppercase; 
-      letter-spacing: 1px; 
-      font-size: 0.85rem; 
+    .site-title {
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
     }
-    nav a { 
-      color: var(--text); 
-      text-decoration: none; 
-      opacity: 0.5; 
-      transition: opacity 0.2s ease, transform 0.2s ease; 
-    }
-    nav a:hover { opacity: 1; transform: translateX(2px); }
+    .site-title a { color: var(--text-main); text-decoration: none; }
     
-    /* Post List - Sharp, no boxes, just strong dividing lines */
-    .post-list { list-style: none; padding: 0; margin-top: 4rem; }
-    .post-list > li { 
-      border-top: 2px solid var(--border);
-      padding: 3rem 0;
-      opacity: 0; 
+    /* Navigation */
+    nav { display: flex; gap: 2.5rem; justify-content: center; margin-top: 1.5rem; }
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    nav a:hover { color: var(--text-main); border-bottom-color: var(--accent); }
+
+    /* Bold Essay Cards */
+    .post-list { list-style: none; }
+    .post-list > li {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 3.5rem 3rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-resting);
+      transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+      
+      /* Smooth intro animation */
+      opacity: 0;
       transform: translateY(20px);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: fadeUp 0.8s var(--ease) forwards;
     }
-    
-    /* Snappy hover effect - no floating, just a sharp indent */
-    .post-list > li:hover { padding-left: 1.5rem; }
-    
-    .post-title { 
-      font-size: clamp(2rem, 5vw, 3rem); 
-      font-weight: 800; 
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 1rem; 
+
+    /* The polished hover interaction */
+    .post-list > li:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
     }
-    .post-title a { color: var(--text); text-decoration: none; }
-    
-    .post-meta { 
-      font-family: "Courier New", Courier, monospace; 
-      text-transform: uppercase; 
-      font-size: 0.85rem; 
-      color: var(--muted); 
+
+    .post-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .post-title a { color: var(--text-main); text-decoration: none; transition: color 0.3s; }
+    .post-list > li:hover .post-title a { color: var(--accent); }
+
+    .post-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 1.5rem;
       font-weight: 600;
     }
+
+    .post-excerpt { font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* Essay Content Reading Experience */
+    h2 { font-size: 2.2rem; margin: 4rem 0 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    p { margin-bottom: 1.5rem; font-size: 1.15rem; color: #2A2A2A; }
     
-    .post-excerpt { 
-      font-size: 1.25rem; 
-      max-width: 650px; 
-      color: var(--text); 
-      opacity: 0.85; 
+    /* Elegant Links */
+    a { 
+      color: var(--accent); 
+      text-decoration: none; 
+      border-bottom: 1px solid rgba(217, 70, 37, 0.3); 
+      transition: border 0.3s; 
     }
-    
-    /* Essay Reading Experience */
-    h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; margin: 0; }
-    h2 { 
-      font-size: 2.5rem; 
-      margin: 4rem 0 1.5rem; 
-      border-bottom: 2px solid var(--border); 
-      padding-bottom: 0.5rem; 
+    a:hover { border-bottom-color: var(--accent); }
+
+    /* Animations */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
-    p { font-size: 1.2rem; margin-bottom: 2rem; color: var(--text); opacity: 0.9; }
-    a { color: var(--text); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; }
-    a:hover { background: var(--text); color: var(--bg); }
-    
-    /* Snappy Reveal Animation */
-    .reveal { animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    @keyframes slideUp { 
-      to { opacity: 1; transform: translateY(0); } 
+
+    footer {
+      text-align: center;
+      margin-top: 6rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
-    
-    footer { 
-      margin-top: 6rem; 
-      padding-top: 2rem; 
-      border-top: 8px solid var(--border); 
-      font-family: "Courier New", Courier, monospace; 
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.8rem;
+
+    @media (max-width: 768px) {
+      .post-list > li { padding: 2.5rem 1.5rem; }
+      .post-title { font-size: 1.8rem; }
     }
   </style>
 </head>
 <body>
   <main>
-    <header class="reveal">
+    <header style="opacity:0; animation: fadeUp 0.8s var(--ease) forwards;">
       <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
       <nav>
         <a href="{{ '/' | relative_url }}">Essays</a>
@@ -141,29 +164,20 @@
       </nav>
     </header>
 
-    <div class="reveal" style="animation-delay: 0.1s;">
+    <div style="opacity:0; animation: fadeUp 0.8s var(--ease) forwards; animation-delay: 0.15s;">
       {{ content }}
     </div>
 
-    <footer class="reveal" style="animation-delay: 0.2s;">
-      &copy; {{ 'now' | date: '%Y' }} Kartik Neti. All rights reserved.
+    <footer style="opacity:0; animation: fadeUp 0.8s var(--ease) forwards; animation-delay: 0.3s;">
+      &copy; {{ 'now' | date: '%Y' }} Kartik Neti. 
     </footer>
   </main>
 
   <script>
-    // Sharp, professional scroll reveals
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05 });
-
-    document.querySelectorAll('.post-list > li, h2, p').forEach((el, i) => {
-      el.style.animationDelay = `${i * 0.05}s`; // Staggered fast reveals
-      observer.observe(el);
+    // Stagger the load-in animation of the essay cards so they flow in beautifully
+    const cards = document.querySelectorAll('.post-list > li');
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${0.2 + (index * 0.1)}s`;
     });
   </script>
 </body>
