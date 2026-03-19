@@ -1,7 +1,7 @@
 # Site settings
 title: Kartik's Essays
 description: Bold insights on product management, psychology, and more
-baseurl: ""  # Leave empty for repo-named site
+baseurl: "/essays"  # Leave empty for repo-named site
 url: "https://kartikist.github.io"  # Change to your GitHub username
 
 # Theme & style (bold, modern)
