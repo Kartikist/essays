@@ -86,7 +86,7 @@ Check how these real life example explain my point:
 {% include demos/masala-papad-demo.html %}
 
 
-Where this leaves me
+Where this leaves me: 
 I still hesitate over stupidly small purchases. I still do the mental ROI of a papad. That script doesn’t disappear overnight.
 
 But as I move into product management, I’m trying to use that same sensitivity differently.
