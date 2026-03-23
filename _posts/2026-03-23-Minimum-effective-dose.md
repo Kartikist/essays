@@ -38,5 +38,5 @@ The work was not wasted because it got cancelled. It was wasted the moment it st
 
 The itch was right. It almost always is.
 
-The hardest skill at work is tolerating the discomfort of having nothing unnecessary to do, and resisting the urge to invent it anyway. Most busyness is just anxiety that learned how to fill a calendar.
-
+The hardest skill at work is tolerating the discomfort of having nothing unnecessary to do, and resisting the urge to invent it anyway.
+The question is not whether you are capable of doing the work. The question is whether the work needs to exist at all. Most of the time, if you ask honestly, it does not. Just because you can do something does not mean it needs to be done. That sounds obvious. It is the hardest thing to practice.
