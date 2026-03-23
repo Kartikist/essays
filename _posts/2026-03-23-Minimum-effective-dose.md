@@ -18,23 +18,25 @@ Our team had a deployment ritual. Every week, a rotating "captain" owned the dep
 Three scheduled meetings to ship code that one informed person could have deployed in twenty minutes.
 When I asked why, the answer was reasonable: two sister teams needed to stay in sync. Fair. But somewhere between the real problem and this solution, something went wrong. The coordination gap that originally caused this process had either been solved another way, or had quietly stopped existing — and the process stayed, because process is hard to kill. It has stakeholders. It has history. It has the irrefutable defence of, "we haven't had that problem since we started doing this", which isn't the same as saying, "THIS IS WHY".
 
-Nobody designed this system to be wasteful. Someone, at some point, had a real problem — a coordination gap, a missed dependency, a deployment that went wrong because one team didn't know what the other was doing. And they solved it. With process. And then the problem that originally caused the process faded, or changed, or was already being solved better somewhere else, and the process stayed.
+Nobody designed this system to be wasteful. Someone, at some point, had a real problem: a coordination gap, a missed dependency, a deployment that went wrong because one team didn't know what the other was doing. And they solved it. With process. And then the problem that originally caused the process faded, or changed, or was already being solved better somewhere else, and the process stayed.
 Process is surprisingly hard to kill. It has stakeholders. It has history. It has the implicit defence of well, we haven't had that problem since we started doing this — which is not the same as saying the process is why.
 
-This happens for three reasons, and they're embarrassingly human.
-Visibility bias: you get credit for what's seen. A thorough system is seen. A minimal solution that quietly handles the problem is not. So teams build to be visible, not to be sufficient.
-The thoroughness alibi: over-engineering is socially safe. If you build more than needed and it works, you were diligent. If you build exactly what's needed and something breaks, you cut corners. The incentives point in the wrong direction.
-Process as proof of progress: when teams feel uncertain, they generate process. Meetings, documentation, preparation calls. These feel like momentum. Often, they're just the appearance of it.
+Here is what I think is actually going on in situations like these, and it is not strategic or political.
 
-The itch I'm describing is an immune response to all three. It's the recognition, before you can fully articulate it, that effort is being spent on the wrong thing.
+People invent work because stillness is uncomfortable. Not because they are lazy or ambitious in the wrong direction. Because their nervous system reads "nothing urgent right now" as a threat. So they fill it. A meeting. A process. A ticket. A call to prepare for the call. It is not malicious. It is anxiety with a calendar invite.
 
-The most productive teams I've been part of had one habit in common: they asked why this, why now, why us before they asked how. They treated scope as a decision, not a given. And the people who protected that scope most aggressively weren't always engineers — they were the product people who understood that every unnecessary hour of engineering is an hour not spent on the work that actually matters.
+The engineer who builds a system that did not need to be built is not showing off. He is soothing something. The manager who adds a third sync to a two-step process is not being bureaucratic on purpose. She cannot sit with the uncertainty of fewer touchpoints. The team that spends a sprint on a feature nobody asked for is not wasting time consciously. They just could not tolerate the discomfort of a lighter backlog.
 
-#BTW...
-We never shipped that ERP. A few weeks before launch, the institution's servers were hacked. Data was stolen. The project got shelved overnight.
-Four months of careful, competent engineering — cancelled by a security incident that had nothing to do with anything we built.
+The most productive people I have worked with shared one quality. They could tolerate having nothing unnecessary to do. They did not fill the gap. They trusted that the next real problem would arrive, and they wanted to be rested and sharp when it did.
 
-I've thought about the lesson in that ending for a long time. And I think it's this: the work wasn't wasted because it got cancelled. It was wasted the moment it started. The hack just made it impossible to pretend otherwise.
+That is a harder skill than it sounds. Most workplaces implicitly punish it. Being visibly busy reads as committed. Being precisely busy reads as underwhelming. So people perform, and eventually they stop being able to tell the difference between the performance and the real thing.
+
+__BTW...___
+We never shipped that ERP. A few weeks before launch, the institution's servers were hacked. Data was stolen. The project was shelved overnight.
+Four months of careful, competent engineering, cancelled by a security incident that had nothing to do with anything we built.
+The work was not wasted because it got cancelled. It was wasted the moment it started. The hack just made it impossible to pretend otherwise.
+
 The itch was right. It almost always is.
 
-The hardest skill isn't knowing what to build. It's having the conviction to stop where the problem actually ends — and not one line of code beyond it.
+The hardest skill at work is tolerating the discomfort of having nothing unnecessary to do, and resisting the urge to invent it anyway. Most busyness is just anxiety that learned how to fill a calendar.
+
